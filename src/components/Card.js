@@ -1,8 +1,12 @@
 import { BsFillBagFill } from "react-icons/bs";
+import { useDispatch } from "react-redux";
+import { addItem } from "../Products/redux/slice";
 
 const Card = ({ img, title, star, reviews, prevPrice, newPrice }) => {
+  const dispatch = useDispatch();
   return (
     <>
+    
       <section className="card">
         <img src={img} alt={title} className="card-img" />
         <div className="card-details">
@@ -19,6 +23,14 @@ const Card = ({ img, title, star, reviews, prevPrice, newPrice }) => {
               <BsFillBagFill className="bag-icon" />
             </div>
           </section>
+          <button
+          onClick={(e) =>
+            dispatch(addItem({ name: title, price: parseInt(newPrice) }))
+          }
+         
+        >
+          Add to cart
+        </button>
         </div>
       </section>
     </>
